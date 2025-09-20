@@ -112,7 +112,7 @@ function App() {
 
   if (currentView === 'editor') {
     return (
-      <div className="min-h-screen bg-gray-50">
+  <div className="min-h-screen bg-background text-text">
         <Header onNewProject={handleNewProject} onExport={() => setShowExportModal(true)} />
         <ProjectEditor
           project={selectedProject}
@@ -124,25 +124,25 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+  <div className="min-h-screen bg-background text-text">
       <Header onNewProject={handleNewProject} onExport={() => setShowExportModal(true)} />
       
-      <main className="max-w-7xl mx-auto px-6 py-8">
+  <main className="max-w-7xl mx-auto px-6 py-8">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Scraping Projects</h2>
-          <p className="text-gray-600">
+          <h2 className="text-2xl font-bold text-primary mb-2">Your Scraping Projects</h2>
+          <p className="text-text-light">
             Create and manage customizable web scraping configurations for any website.
           </p>
         </div>
 
         {projects.length === 0 ? (
           <div className="text-center py-12">
-            <div className="bg-white rounded-lg border-2 border-dashed border-gray-300 p-12">
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
-              <p className="text-gray-500 mb-6">Get started by creating your first scraping project.</p>
+            <div className="bg-surface rounded-lg border-2 border-dashed border-primary-light p-12">
+              <h3 className="text-lg font-medium text-primary mb-2">No projects yet</h3>
+              <p className="text-text-light mb-6">Get started by creating your first scraping project.</p>
               <button
                 onClick={handleNewProject}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                className="btn-primary px-6 py-3"
               >
                 Create Your First Project
               </button>
