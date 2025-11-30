@@ -2,15 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern base styles */
-body {
-	@apply bg-background text-text font-sans;
+/* CSS variables for light/dark themes (RGB components for rgb(... / alpha) usage) */
+:root {
+	--color-primary: 34 197 94; /* green-500 */
+	--color-primary-dark: 16 163 74; /* green-600 */
+	--color-accent: 16 185 129; /* emerald-500 */
+	--color-background: white; /* green-50 */
+	--color-surface: 255 255 255; /* white */
+	--color-text: 20 83 45; /* green-900 */
+	--button-text: 255 255 255;
 }
 
+/* Dark theme overrides: pick brighter button colors for contrast */
+.dark {
+	--color-primary: 52 211 153; /* green-400 (brighter on dark) */
+	--color-primary-dark: 16 185 129; /* slightly darker on hover */
+	--color-accent: 45 212 191; /* teal-ish accent */
+	--color-background: 7 10 15; /* very dark bg */
+	--color-surface: 12 18 28; /* surface in dark */
+	--color-text: 230 241 226; /* light text */
+	--button-text: 6 10 15; /* for light-button-on-dark if needed */
+}
+
+/* Use Inter as default font */
+html, body, #root {
+	height: 100%;
+}
+
+body {
+	font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	background-color: rgb(var(--color-background));
+	color: rgb(var(--color-text));
+	margin: 0;
+}
+
+/* Button styles with strong contrast and accessible focus */
 .btn-primary {
-	@apply bg-primary text-white rounded-lg px-4 py-2 font-medium shadow hover:bg-primary-dark transition-colors;
+	@apply rounded-lg px-4 py-2 font-medium shadow transition-colors inline-flex items-center justify-center;
+	background-color: rgb(var(--color-primary));
+	color: rgb(var(--button-text));
+	border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+	background-color: rgb(var(--color-primary-dark));
+}
+
+.btn-primary:focus {
+	outline: none;
+	box-shadow: 0 0 0 4px rgb(var(--color-primary) / 0.12);
 }
 
 .btn-accent {
-	@apply bg-accent text-white rounded-lg px-4 py-2 font-medium shadow hover:bg-accent-dark transition-colors;
+	@apply rounded-lg px-4 py-2 font-medium shadow transition-colors inline-flex items-center justify-center;
+	background-color: rgb(var(--color-accent));
+	color: rgb(var(--button-text));
+	border: 1px solid transparent;
+}
+
+.btn-accent:hover {
+	filter: brightness(0.95);
+}
+
+.btn-accent:focus {
+	outline: none;
+	box-shadow: 0 0 0 4px rgb(var(--color-accent) / 0.12);
+}
+
+/* Ensure buttons stand out on very dark surfaces */
+.dark .btn-primary,
+.dark .btn-accent {
+	box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+	border-color: rgb(255 255 255 / 0.04);
+}
+
+/* Utility: surface card */
+.card {
+	background-color: rgb(var(--color-surface));
+	color: rgb(var(--color-text));
+	border-radius: 0.75rem;
+	box-shadow: 0 6px 20px rgba(2,6,23,0.08);
 }
